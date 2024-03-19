@@ -140,7 +140,8 @@ spring.datasource.username=${DBUSER}
 spring.datasource.password=${DBPASS}
 ```
 
-Since we will use 4-JWT, we will need JWT SECRET-KEY and we will get this value from our Vault application.
+
+4- Since we will use JWT, we will need JWT SECRET-KEY and we will get this value from our Vault application.
 
  application.properties
 
