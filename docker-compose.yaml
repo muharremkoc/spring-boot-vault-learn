@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+
+  vault-server:
+    image: vault:1.13.3
+    container_name: vault
+    ports:
+      - "8200:8200"
+    restart: always
+    environment:
+      VAULT_ADDR: "http://127.0.0.1:8200"
+    volumes:
+      - ./volumes/logs:/vault/logs
+      - ./volumes/file:/vault/file
+      - ./volumes/config:/vault/config
+    cap_add:
+      - IPC_LOCK
+    entrypoint: vault server -config=/vault/config/config.json
+
+  mysql:
+    image: mysql:8.0
+    container_name: vaultsql
+    restart: always
+    environment:
+      - MYSQL_DATABASE=userDB
+      - MYSQL_ROOT_PASSWORD=your-root-password
+    ports:
+      - '3306:3306'
